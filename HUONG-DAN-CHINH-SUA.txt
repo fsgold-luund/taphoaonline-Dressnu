@@ -1,0 +1,113 @@
+====================================================================
+HƯỚNG DẪN CHỈNH SỬA LANDING PAGE — TẠP HÓA - ONLINE (Quần áo Nam)
+====================================================================
+
+File landing page: landing-page-quan-ao-nam.html
+Thư mục chứa ảnh:   Taphoaonline/
+
+Mỗi khi muốn đổi ẢNH, TÊN sản phẩm, GIÁ, hoặc LINK mua hàng, bạn chỉ
+cần làm theo các bước dưới đây — không cần biết lập trình.
+
+--------------------------------------------------------------------
+BƯỚC 0: MỞ FILE ĐỂ CHỈNH SỬA
+--------------------------------------------------------------------
+- Click phải vào file "landing-page-quan-ao-nam.html"
+- Chọn "Mở bằng" (Open with) > TextEdit (Mac) hoặc Notepad (Windows)
+  (KHÔNG mở bằng trình duyệt để sửa — mở trình duyệt chỉ để XEM kết quả)
+- Sau khi mở, dùng Cmd+F (Mac) hoặc Ctrl+F (Windows) và gõ "const products"
+  để nhảy nhanh đến đúng chỗ cần sửa.
+
+--------------------------------------------------------------------
+BƯỚC 1: THÊM / ĐỔI ẢNH SẢN PHẨM
+--------------------------------------------------------------------
+1. Chuẩn bị ảnh sản phẩm (nên dùng .jpg hoặc .webp, ảnh dọc tỉ lệ 3:4
+   sẽ đẹp nhất).
+2. Đặt tên file ảnh dễ nhớ, KHÔNG dấu, KHÔNG khoảng trắng.
+   Ví dụ: ao-so-mi-trang.jpg, quan-jean-slim.jpg
+3. Copy ảnh vào thư mục:  Taphoaonline/  (nằm cùng cấp với file html)
+4. Trong file html, tìm dòng sản phẩm tương ứng và sửa phần "img:"
+   thành đúng tên file ảnh vừa thêm.
+
+   Ví dụ:
+   { name:"Áo sơ mi trắng basic", price:"259.000đ", old:"",
+     img:"Taphoaonline/ao-so-mi-trang.jpg", badge:"Mới", link:"" }
+
+   Lưu ý: phần img luôn bắt đầu bằng "Taphoaonline/" rồi mới đến tên
+   file ảnh.
+
+Nếu chưa kịp có ảnh thật, cứ để nguyên — trang sẽ tự hiển thị một ô
+màu xám ghi tên file ảnh cần thêm, không bị lỗi hay vỡ giao diện.
+
+--------------------------------------------------------------------
+BƯỚC 2: ĐỔI TÊN SẢN PHẨM
+--------------------------------------------------------------------
+Sửa phần "name:" trong dấu ngoặc kép.
+
+   Trước:  name:"Áo sơ mi trắng basic"
+   Sau:    name:"Áo sơ mi trắng tay dài"
+
+--------------------------------------------------------------------
+BƯỚC 3: ĐỔI GIÁ SẢN PHẨM
+--------------------------------------------------------------------
+- "price"  = giá đang bán (giá hiển thị to, đậm)
+- "old"    = giá gốc trước khi giảm (hiển thị gạch ngang, nhỏ hơn)
+             Nếu sản phẩm KHÔNG giảm giá, để old:"" (hai dấu nháy, trống)
+
+   Ví dụ sản phẩm có giảm giá:
+   { name:"Áo thun cotton form rộng", price:"189.000đ", old:"249.000đ", ... }
+   → Hiển thị: 249.000đ (gạch ngang)  189.000đ
+
+   Ví dụ sản phẩm không giảm giá:
+   { name:"Quần âu ống suông", price:"359.000đ", old:"", ... }
+   → Hiển thị: 359.000đ
+
+Lưu ý: viết giá kèm chữ "đ" và dấu chấm phân cách như mẫu có sẵn để
+đồng bộ với các sản phẩm khác.
+
+--------------------------------------------------------------------
+BƯỚC 4: THÊM LINK DẪN ĐẾN TRANG MUA SẢN PHẨM
+--------------------------------------------------------------------
+Sửa phần "link:" — dán link Shopee, Facebook, Zalo, TikTok Shop...
+của đúng sản phẩm đó vào giữa hai dấu ngoặc kép.
+
+   Ví dụ:
+   { name:"Áo khoác bomber", price:"459.000đ", old:"",
+     img:"Taphoaonline/ao-khoac-bomber.jpg", badge:"Mới",
+     link:"https://shopee.vn/ao-khoac-bomber-abc123" }
+
+Sau khi thêm link:
+- Click vào ẢNH hoặc TÊN sản phẩm trên trang → sẽ tự mở link đó ở
+  tab mới.
+- Nếu để link:"" (trống) → click vào sản phẩm sẽ chỉ cuộn về đầu
+  danh sách sản phẩm (không mở trang nào khác), tránh bị lỗi link chết.
+
+--------------------------------------------------------------------
+BƯỚC 5: THÊM SẢN PHẨM MỚI HOÀN TOÀN (không có sẵn trong danh sách)
+--------------------------------------------------------------------
+Copy nguyên một dòng sản phẩm bất kỳ, dán xuống dưới dòng cuối cùng
+(trước dấu "];"), rồi sửa lại thông tin theo Bước 1–4.
+
+   { name:"Tên sản phẩm mới", price:"000.000đ", old:"",
+     img:"Taphoaonline/ten-anh-moi.jpg", badge:"", link:"" },
+
+Nhớ giữ đúng dấu phẩy "," ở cuối mỗi dòng sản phẩm (trừ dòng cuối
+cùng có thể có hoặc không đều được).
+
+--------------------------------------------------------------------
+BƯỚC 6: LƯU FILE VÀ XEM KẾT QUẢ
+--------------------------------------------------------------------
+1. Lưu file lại (Cmd+S / Ctrl+S).
+2. Mở file "landing-page-quan-ao-nam.html" bằng trình duyệt (Chrome,
+   Safari...) để xem kết quả — double click vào file là được.
+3. Nếu sửa xong mà mở lại thấy trang không đổi, thử nhấn Cmd+Shift+R
+   (Mac) hoặc Ctrl+Shift+R (Windows) để trình duyệt tải lại từ đầu.
+
+--------------------------------------------------------------------
+MẸO NHỎ
+--------------------------------------------------------------------
+- Mỗi sản phẩm là MỘT dòng nằm trong dấu { }. Chỉ sửa phần chữ bên
+  trong dấu ngoặc kép " ", không xoá dấu ngoặc { }, ( ), hay dấu phẩy.
+- Có thể sửa nhiều sản phẩm cùng lúc, miễn giữ đúng cấu trúc từng dòng.
+- Phần đánh giá khách hàng (mục "reviews" ngay bên dưới "products")
+  cũng sửa tương tự: name = tên khách, text = nội dung đánh giá.
+====================================================================

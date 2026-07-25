@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TẠP HÓA - ONLINE — Thời trang nam</title>
+<style>
+  :root{
+    --black:#0e0e0e;
+    --white:#ffffff;
+    --cream:#f4f1ec;
+    --gray:#8a8a8a;
+    --line:#e4e1da;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Helvetica Neue',Arial,'Segoe UI',sans-serif;
+    color:var(--black);
+    background:var(--white);
+    -webkit-font-smoothing:antialiased;
+  }
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 32px;}
+
+  /* ===== Placeholder ảnh (khi chưa có ảnh thật) ===== */
+  .ph{
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,#efece5,#e3ded3);
+    color:#a49c8c;font-size:13px;letter-spacing:.05em;text-align:center;
+    width:100%;height:100%;
+  }
+
+  /* ===== Header ===== */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    height:80px;
+  }
+  .logo{
+    font-size:22px;font-weight:700;letter-spacing:.1em;
+  }
+  .nav-links{display:flex;gap:32px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;}
+  .nav-links a{opacity:.8;transition:opacity .2s;}
+  .nav-links a:hover{opacity:1;border-bottom:1px solid var(--black);}
+  .nav-icons{display:flex;gap:20px;align-items:center;font-size:13px;letter-spacing:.05em;text-transform:uppercase;}
+  .nav-icons a{display:flex;align-items:center;gap:6px;}
+  .burger{display:none;background:none;border:none;cursor:pointer;}
+  @media (max-width:860px){
+    .nav-links{display:none;}
+    .nav-icons span.label{display:none;}
+    .burger{display:block;}
+  }
+
+  /* ===== Hero (ảnh ngang full chiều rộng, chữ làm nền trên ảnh) ===== */
+  .hero{position:relative;}
+  .hero-media{
+    position:relative;width:100%;overflow:hidden;
+    aspect-ratio:16/8;background:#e7e2d8;
+  }
+  .hero-media img{width:100%;height:100%;object-fit:cover;display:block;}
+  .hero-media::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(180deg, rgba(0,0,0,.32) 0%, rgba(0,0,0,.05) 38%, rgba(0,0,0,.4) 100%);
+  }
+  .hero-overlay{
+    position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;
+    justify-content:space-between;padding:44px 32px;color:#fff;
+  }
+  .hero-top{
+    display:flex;justify-content:space-between;align-items:flex-start;
+    font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#fff;opacity:.92;
+  }
+  .hero-top .tag{border:1px solid rgba(255,255,255,.65);padding:6px 14px;border-radius:999px;}
+  .hero-title{
+    font-size:clamp(30px,6.4vw,88px);
+    font-weight:800;letter-spacing:-.01em;line-height:.95;
+    text-align:center;color:#fff;
+    text-shadow:0 4px 26px rgba(0,0,0,.4);
+  }
+  .hero-cta{
+    display:flex;justify-content:center;gap:18px;flex-wrap:wrap;
+  }
+  .btn{
+    padding:14px 30px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+    border:1px solid var(--black);cursor:pointer;transition:.2s;
+  }
+  .btn-solid{background:var(--black);color:var(--white);}
+  .btn-solid:hover{background:#333;}
+  .btn-outline{background:transparent;color:var(--black);}
+  .btn-outline:hover{background:var(--black);color:var(--white);}
+  .hero-cta .btn-outline{color:#fff;border-color:#fff;}
+  .hero-cta .btn-outline:hover{background:#fff;color:var(--black);}
+  @media (max-width:700px){
+    .hero-media{aspect-ratio:3/4;}
+    .hero-overlay{padding:28px 20px;}
+  }
+
+  /* ===== Category strip ===== */
+  .categories{background:var(--black);color:var(--white);padding:56px 0;}
+  .cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+  .cat-card{display:flex;flex-direction:column;gap:16px;}
+  .cat-img{aspect-ratio:4/5;overflow:hidden;}
+  .cat-img img{width:100%;height:100%;object-fit:cover;}
+  .cat-card h3{font-size:15px;letter-spacing:.1em;text-transform:uppercase;}
+  .cat-card p{font-size:13px;color:#b9b9b9;line-height:1.5;margin-top:-8px;}
+  .cat-card .link{font-size:12px;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--white);width:fit-content;padding-bottom:2px;}
+  @media (max-width:760px){.cat-grid{grid-template-columns:1fr;}}
+
+  /* ===== New season banner ===== */
+  .season{position:relative;}
+  .season-media{width:100%;aspect-ratio:16/8;}
+  .season-content{
+    max-width:1280px;margin:0 auto;padding:64px 32px;
+    display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;
+  }
+  .season-content .eyebrow{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);margin-bottom:10px;}
+  .season-content h2{font-size:clamp(40px,6vw,64px);font-weight:800;line-height:.95;letter-spacing:-.01em;}
+  .season-content p{max-width:320px;color:var(--gray);font-size:14px;line-height:1.6;margin-top:16px;}
+
+  /* ===== Features bar ===== */
+  .features{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:36px 0;}
+  .feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+  .feat{display:flex;align-items:center;gap:14px;font-size:13px;}
+  .feat svg{flex-shrink:0;}
+  .feat b{display:block;text-transform:uppercase;letter-spacing:.04em;font-size:12px;}
+  .feat span{color:var(--gray);font-size:12px;}
+  @media (max-width:760px){.feat-grid{grid-template-columns:1fr 1fr;}}
+
+  /* ===== Products ===== */
+  .products{padding:80px 0;}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px;flex-wrap:wrap;gap:12px;}
+  .section-head .eyebrow{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);}
+  .section-head h2{font-size:clamp(28px,4vw,42px);font-weight:800;letter-spacing:-.01em;}
+  .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;}
+  .prod-card{position:relative;}
+  .prod-img{aspect-ratio:3/4;overflow:hidden;background:var(--cream);margin-bottom:14px;position:relative;}
+  .prod-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+  .prod-card:hover .prod-img img{transform:scale(1.04);}
+  .prod-badge{position:absolute;top:12px;left:12px;background:var(--black);color:var(--white);font-size:11px;letter-spacing:.05em;text-transform:uppercase;padding:5px 10px;}
+  .prod-name{font-size:14px;margin-bottom:6px;line-height:1.4;}
+  .prod-view{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--black);border-bottom:1px solid var(--black);width:fit-content;padding-bottom:2px;}
+  @media (max-width:960px){.prod-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:520px){.prod-grid{grid-template-columns:1fr 1fr;gap:16px;}}
+
+  /* ===== Testimonials ===== */
+  .testimonials{background:var(--cream);padding:70px 0;}
+  .tst-table{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);}
+  .tst-col{border-right:1px solid var(--line);}
+  .tst-col:last-child{border-right:none;}
+  .tst-head{padding:18px 24px;font-size:13px;font-weight:700;letter-spacing:.05em;border-bottom:1px solid var(--line);background:#eeeae1;}
+  .tst-body{padding:24px;font-size:14px;line-height:1.7;color:#3d3a34;min-height:120px;}
+  .tst-stars{color:#c9a24a;font-size:13px;margin-top:12px;}
+  @media (max-width:760px){.tst-table{grid-template-columns:1fr;}.tst-col{border-right:none;border-bottom:1px solid var(--line);}}
+
+  /* ===== Footer ===== */
+  footer{background:var(--black);color:var(--white);padding:64px 0 28px;}
+  .foot-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:40px;padding-bottom:44px;border-bottom:1px solid #2a2a2a;}
+  .foot-brand{max-width:320px;}
+  .foot-brand .logo{color:var(--white);margin-bottom:14px;}
+  .foot-brand p{font-size:13px;color:#a7a7a7;line-height:1.7;}
+  .foot-cta{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--white);width:fit-content;padding-bottom:3px;}
+  .foot-links{display:flex;gap:64px;flex-wrap:wrap;}
+  .foot-links ul{display:flex;flex-direction:column;gap:12px;font-size:13px;color:#d5d5d5;}
+  .foot-links h4{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#8a8a8a;margin-bottom:6px;}
+  .foot-social{display:flex;gap:14px;}
+  .foot-social a{width:34px;height:34px;border:1px solid #3a3a3a;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+  .foot-bottom{display:flex;justify-content:space-between;padding-top:24px;font-size:12px;color:#7a7a7a;flex-wrap:wrap;gap:10px;}
+
+  section h2, .hero-title{font-family:'Helvetica Neue',Arial,sans-serif;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="logo">TẠP HÓA - ONLINE</a>
+    <nav class="nav-links">
+      <a href="#top">Trang chủ</a>
+      <a href="#danh-muc">Danh mục</a>
+      <a href="#san-pham">Sản phẩm</a>
+      <a href="#danh-gia">Đánh giá</a>
+      <a href="#footer">Liên hệ</a>
+    </nav>
+    <div class="nav-icons">
+      <a href="#san-pham"><span class="label">Tìm kiếm</span> 🔍</a>
+      <a href="#san-pham"><span class="label">Giỏ hàng</span> 🛍️ (0)</a>
+    </div>
+    <button class="burger" aria-label="menu">☰</button>
+  </div>
+</header>
+
+<!-- ===== HERO =====
+     Ảnh bìa (hero.jpg) nên dùng ảnh NGANG (khổ rộng, ví dụ 1920x960px)
+     để phủ kín toàn bộ chiều ngang và làm nền cho chữ "TẠP HÓA - ONLINE". -->
+<section class="hero" id="top">
+  <div class="hero-media">
+    <!-- Ảnh bìa chính — nằm trong thư mục Taphoaonline/ -->
+    <img src="Taphoaonline/Hero.ipg.png" alt="Ảnh bìa Tạp Hóa - Online"
+         onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',style:'width:100%;height:100%',innerText:'Ảnh bìa (ngang)\n(Taphoaonline/Hero.ipg.png)'}))">
+    <div class="hero-overlay">
+      <div class="hero-top">
+        <span>Thời trang · Tối giản · Phong cách</span>
+        <span class="tag">Bộ sưu tập 2026</span>
+      </div>
+      <div class="hero-title">TẠP HÓA<br>- ONLINE</div>
+      <div class="hero-cta">
+        <a class="btn btn-solid" href="#san-pham">Mua ngay</a>
+        <a class="btn btn-outline" href="#danh-muc">Khám phá bộ sưu tập mới</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CATEGORIES ===== -->
+<section class="categories" id="danh-muc">
+  <div class="wrap cat-grid">
+    <div class="cat-card">
+      <div class="cat-img">
+        <img src="Taphoaonline/danh-muc-ao.jpg" alt="Đầm Nữ"
+             onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',style:'width:100%;height:100%',innerText:'Taphoaonline/danh-muc-ao.jpg'}))">
+      </div>
+      <h3>Dress Công Chúa</h3>
+      <p>Áo sơ mi, áo thun, áo khoác — thiết kế gọn gàng cho mọi ngày.</p>
+      <a class="link" href="#san-pham">Xem thêm →</a>
+    </div>
+    <div class="cat-card">
+      <div class="cat-img">
+        <img src="Taphoaonline/danh-muc-quan.jpg" alt="Đầm Nữ"
+             onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',style:'width:100%;height:100%',innerText:'Taphoaonline/danh-muc-quan.jpg'}))">
+      </div>
+      <h3>Đầm xẻ</h3>
+      <p>Quần âu, quần jean, quần jogger — vừa vặn, thoải mái vận động.</p>
+      <a class="link" href="#san-pham">Xem thêm →</a>
+    </div>
+    <div class="cat-card">
+      <div class="cat-img">
+        <img src="Taphoaonline/danh-muc-phu-kien.jpg" alt="Phụ kiện"
+             onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',style:'width:100%;height:100%',innerText:'Taphoaonline/danh-muc-phu-kien.jpg'}))">
+      </div>
+      <h3>Phụ kiện</h3>
+      <p>Thắt lưng, mũ, túi — điểm nhấn hoàn thiện phong cách.</p>
+      <a class="link" href="#san-pham">Xem thêm →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NEW SEASON BANNER ===== -->
+<section class="season">
+  <div class="season-media">
+    <img src="Taphoaonline/Season-banner.png" alt="Bộ sưu tập mới" style="width:100%;height:100%;object-fit:cover;"
+         onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',style:'width:100%;height:100%',innerText:'Taphoaonline/Season-banner.png'}))">
+  </div>
+  <div class="season-content">
+    <div>
+      <div class="eyebrow">Mùa mới · 2026</div>
+      <h2>Phong cách<br>mới mỗi ngày</h2>
+    </div>
+    <div>
+      <p>Khám phá những thiết kế mới nhất, chất liệu thoáng mát, phù hợp mọi vóc dáng.</p>
+      <a class="btn btn-solid" style="margin-top:18px;display:inline-block;" href="#san-pham">Khám phá ngay</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section class="features">
+  <div class="wrap feat-grid">
+    <div class="feat">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="7" width="15" height="10"/><path d="M16 10h4l3 3v4h-7z"/><circle cx="6" cy="19" r="1.8"/><circle cx="18" cy="19" r="1.8"/></svg>
+      <div><b>Giao hàng nhanh</b><span>Toàn quốc 2–4 ngày</span></div>
+    </div>
+    <div class="feat">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg>
+      <div><b>Đổi trả dễ dàng</b><span>Trong vòng 7 ngày</span></div>
+    </div>
+    <div class="feat">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg>
+      <div><b>Đảm bảo chất lượng</b><span>Kiểm tra kỹ trước khi giao</span></div>
+    </div>
+    <div class="feat">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+      <div><b>Thanh toán an toàn</b><span>COD &amp; chuyển khoản</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRODUCTS ===== -->
+<section class="products" id="san-pham">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Nổi bật</div>
+        <h2>Sản phẩm mới nhất</h2>
+      </div>
+    </div>
+    <div class="prod-grid" id="prod-grid"></div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="testimonials" id="danh-gia">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Khách hàng nói gì</div>
+        <h2>Đánh giá mới nhất</h2>
+      </div>
+    </div>
+    <div class="tst-table" id="tst-table"></div>
+  </div>
+</section>
+
+<footer id="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="logo">TẠP HÓA - ONLINE</div>
+        <p>Thương hiệu thời trang nam của Tạp Hóa - Online. Sản phẩm được chọn lọc kỹ lưỡng, mang đến phong cách gọn gàng, hiện đại cho phái mạnh.</p>
+        <a class="foot-cta" href="#san-pham">Xem sản phẩm →</a>
+      </div>
+      <div class="foot-links">
+        <div>
+          <h4>Điều hướng</h4>
+          <ul>
+            <li><a href="#top">Trang chủ</a></li>
+            <li><a href="#danh-muc">Danh mục</a></li>
+            <li><a href="#san-pham">Sản phẩm</a></li>
+            <li><a href="#danh-gia">Đánh giá</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Kết nối</h4>
+          <div class="foot-social">
+            <a href="#" title="Facebook" aria-label="Facebook">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-9h3l.5-4H13V6.5c0-1.15.3-1.9 2-1.9h1.7V1.1C16.4 1 15.2 1 13.8 1 10.9 1 9 2.7 9 5.9V9H6v4h3v9z"/></svg>
+            </a>
+            <a href="#" title="Zalo" aria-label="Zalo">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+            </a>
+            <a href="#" title="Instagram" aria-label="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Tạp Hóa - Online — Sản phẩm thời trang. All rights reserved.</span>
+      <span>Made with care.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="products-data.js"></script>
+<script>
+/* Danh sách sản phẩm (name, images, buyLink...) nằm trong file products-data.js
+   — sửa sản phẩm ở đó, file này chỉ vẽ ra giao diện. */
+const grid = document.getElementById('prod-grid');
+grid.innerHTML = PRODUCTS.map(p => `
+  <a class="prod-card" href="san-pham.html?id=${p.id}">
+    <div class="prod-img">
+      ${p.badge ? `<span class="prod-badge">${p.badge}</span>` : ""}
+      <img src="${productImgSrc(p)}" alt="${p.name}"
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',style:'width:100%;height:100%',innerText:'${p.name}'}))">
+    </div>
+    <div class="prod-name">${p.name}</div>
+    <div class="prod-view">Xem sản phẩm →</div>
+  </a>
+`).join('');
+
+/* ==========================================================================
+   ĐÁNH GIÁ KHÁCH HÀNG — chỉnh sửa ở đây
+   ========================================================================== */
+const reviews = [
+  { name:"Minh Tuấn", text:"Chất vải mát, form áo chuẩn, giao hàng nhanh hơn dự kiến. Sẽ ủng hộ shop tiếp!" },
+  { name:"Quốc Bảo", text:"Lần đầu mua online mà vừa vặn luôn, đóng gói cẩn thận. Rất đáng tiền." },
+  { name:"Hải Đăng", text:"Shop tư vấn size nhiệt tình, sản phẩm giống hình, sẽ quay lại mua thêm." },
+];
+document.getElementById('tst-table').innerHTML = reviews.map(r => `
+  <div class="tst-col">
+    <div class="tst-head">${r.name}</div>
+    <div class="tst-body">${r.text}<div class="tst-stars">★★★★★</div></div>
+  </div>
+`).join('');
+</script>
+</body>
+</html>
