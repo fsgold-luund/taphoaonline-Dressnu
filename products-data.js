@@ -102,6 +102,15 @@ const PRODUCTS = [
     buyLink: "https://s.shopee.vn/903tDqs8Wf",
     badge: ""
   }
+   {
+    id: 11,
+    name: "Bikini",
+    fullName: "Bikini đi biển",
+    folder: "Taphoaonline/11. Bikini Phong cách Sexy, 2 mảnh, Bikini phù hợp với đi biển",
+    images: ["Bikini00","Bikini01","Bikini02","Bikini03","Bikini04","Bikini05","Bikini06"],
+    buyLink: "https://shopee.vn/product/782213167/46357689788?credential_token=8wEwiDL7Z2a8ZJj6fxb96SzF5LoqSuTaXRimDDVP21&exp_group=rollout&gads_t_sig=gqRjZGVrxHCFomtpsTE0MjUxOnRzc19zZGtfa2V5omt20QABpGFsZ2_SAAAAZKNkZWvAomN0xEAAAAAM_NxfHGgeczprZR4Q8tPoOfvwhbtN63JlB369xGJA1mbqBWuW2sVWxQjSJT_xT_mbG0_W5kumedB_GGTjqmNpcGhlcnRleHTEkwAAAAzjrUCST-EbOt0k4-r1mb0PsZ13EjC45v2ldMrJT3IIApNMUG96dzdtx99LDa7y7i_vfyCNFNUK7l-nrj6KL09RhNBc-Ld8nGGvKaUMeG7PrAHDXUyTsxdpSohWlVfWkeefkmZj3EWW0Ub9HB5jdh3ZSBoIr9B_uxdvulS_2boyVWs8ecXbOHXto75EcMg4hA&mmp_pid=an_17326360581&uls_trackid=567qmd8301ka&utm_campaign=id_a0N5eiqhjL&utm_content=----&utm_medium=affiliates&utm_source=an_17326360581&utm_term=fa31kkgxgrwr",
+    badge: ""
+  }
 ];
 
 function productImgSrc(p, index){ return p.folder + "/" + p.images[index || 0]; }
