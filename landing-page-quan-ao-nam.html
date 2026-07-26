@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TẠP HÓA - ONLINE — Thời trang nam</title>
+<title>TẠP HÓA - ONLINE — Thời trang nữ</title>
 <style>
   :root{
     --black:#0e0e0e;
@@ -52,9 +52,15 @@
   .nav-links a:hover{opacity:1;border-bottom:1px solid var(--black);}
   .nav-icons{display:flex;gap:20px;align-items:center;font-size:13px;letter-spacing:.05em;text-transform:uppercase;}
   .nav-icons a{display:flex;align-items:center;gap:6px;}
-  .burger{display:none;background:none;border:none;cursor:pointer;}
+  .burger{display:none;background:none;border:none;cursor:pointer;font-size:20px;}
   @media (max-width:860px){
-    .nav-links{display:none;}
+    .nav-links{
+      display:none;position:absolute;top:80px;left:0;right:0;
+      flex-direction:column;gap:0;background:var(--white);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-links.open{display:flex;}
+    .nav-links a{padding:16px 32px;border-bottom:1px solid var(--line);}
     .nav-icons span.label{display:none;}
     .burger{display:block;}
   }
@@ -182,7 +188,7 @@
 <header>
   <div class="wrap nav">
     <a href="#top" class="logo">TẠP HÓA - ONLINE</a>
-    <nav class="nav-links">
+    <nav class="nav-links" id="nav-links">
       <a href="#top">Trang chủ</a>
       <a href="#danh-muc">Danh mục</a>
       <a href="#san-pham">Sản phẩm</a>
@@ -193,7 +199,7 @@
       <a href="#san-pham"><span class="label">Tìm kiếm</span> 🔍</a>
       <a href="#san-pham"><span class="label">Giỏ hàng</span> 🛍️ (0)</a>
     </div>
-    <button class="burger" aria-label="menu">☰</button>
+    <button class="burger" id="burger-btn" aria-label="Mở menu" aria-expanded="false">☰</button>
   </div>
 </header>
 
@@ -203,8 +209,8 @@
 <section class="hero" id="top">
   <div class="hero-media">
     <!-- Ảnh bìa chính — nằm trong thư mục Taphoaonline/ -->
-    <img src="Taphoaonline/Hero.ipg.png" alt="Ảnh bìa Tạp Hóa - Online"
-         onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',style:'width:100%;height:100%',innerText:'Ảnh bìa (ngang)\n(Taphoaonline/Hero.ipg.png)'}))">
+    <img src="Taphoaonline/Hero.jpg" alt="Ảnh bìa Tạp Hóa - Online"
+         onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',style:'width:100%;height:100%',innerText:'Ảnh bìa (ngang)\n(Taphoaonline/Hero.jpg)'}))">
     <div class="hero-overlay">
       <div class="hero-top">
         <span>Thời trang · Tối giản · Phong cách</span>
@@ -224,20 +230,20 @@
   <div class="wrap cat-grid">
     <div class="cat-card">
       <div class="cat-img">
-        <img src="Taphoaonline/danh-muc-ao.jpg" alt="Đầm Nữ"
-             onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',style:'width:100%;height:100%',innerText:'Taphoaonline/danh-muc-ao.jpg'}))">
+        <img src="Taphoaonline/Dress-du-tiec.jpg" alt="Đầm Nữ"
+             onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',style:'width:100%;height:100%',innerText:'Taphoaonline/Dress-du-tiec.jpg'}))">
       </div>
-      <h3>Dress Công Chúa</h3>
-      <p>Áo sơ mi, áo thun, áo khoác — thiết kế gọn gàng cho mọi ngày.</p>
+      <h3>Dress dự tiệc</h3>
+      <p>Đầm dáng xòe, phối ren, sang trọng — nổi bật trong mọi bữa tiệc.</p>
       <a class="link" href="#san-pham">Xem thêm →</a>
     </div>
     <div class="cat-card">
       <div class="cat-img">
-        <img src="Taphoaonline/Bikini.jpg" alt="Đầm Nữ"
-             onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',style:'width:100%;height:100%',innerText:'Taphoaonline/Bikini.jpg'}))">
+        <img src="Taphoaonline/danh-muc-bikini.jpg" alt="Bikini"
+             onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',style:'width:100%;height:100%',innerText:'Taphoaonline/danh-muc-bikini.jpg'}))">
       </div>
       <h3>Bikini</h3>
-      <p>Sexy - Gợi cảm - Thời trang đi biển.</p>
+      <p>Phong cách sexy; Bikini đi biển</p>
       <a class="link" href="#san-pham">Xem thêm →</a>
     </div>
     <div class="cat-card">
@@ -323,7 +329,7 @@
     <div class="foot-grid">
       <div class="foot-brand">
         <div class="logo">TẠP HÓA - ONLINE</div>
-        <p>Thương hiệu thời trang nam của Tạp Hóa - Online. Sản phẩm được chọn lọc kỹ lưỡng, mang đến phong cách gọn gàng, hiện đại cho phái mạnh.</p>
+        <p>Thương hiệu thời trang nữ của Tạp Hóa - Online. Sản phẩm được chọn lọc kỹ lưỡng, mang đến phong cách sang trọng, hiện đại cho phái đẹp.</p>
         <a class="foot-cta" href="#san-pham">Xem sản phẩm →</a>
       </div>
       <div class="foot-links">
@@ -375,6 +381,20 @@ grid.innerHTML = PRODUCTS.map(p => `
     <div class="prod-view">Xem sản phẩm →</div>
   </a>
 `).join('');
+
+/* Menu mobile: bấm nút ☰ để mở/đóng danh sách điều hướng */
+const burgerBtn = document.getElementById('burger-btn');
+const navLinks = document.getElementById('nav-links');
+burgerBtn.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('open');
+  burgerBtn.setAttribute('aria-expanded', isOpen);
+  burgerBtn.textContent = isOpen ? '✕' : '☰';
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  navLinks.classList.remove('open');
+  burgerBtn.setAttribute('aria-expanded', 'false');
+  burgerBtn.textContent = '☰';
+}));
 
 /* ==========================================================================
    ĐÁNH GIÁ KHÁCH HÀNG — chỉnh sửa ở đây
